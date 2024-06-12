@@ -1,14 +1,17 @@
 package com.rishi.todo.controllers;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.util.StreamUtils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.swing.*;
+import java.awt.*;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +21,7 @@ import java.util.Arrays;
 @RestController
 @RequestMapping("/file")
 public class FileController {
+
 
     Logger logger = LoggerFactory.getLogger(FileController.class);
     Logger logger1 = LoggerFactory.getLogger(FileController.class);
@@ -45,5 +49,18 @@ public class FileController {
             System.out.println("+++++++++++++++++++++++++++++++++++++++++");
         });
         return "Handling multiple files";
+    }
+
+    //serving image files in reponse
+    @GetMapping("/serve-image")
+    public void serveImageHandler(HttpServletResponse response){
+        //image file download
+        try{
+            InputStream fileInput = new FileInputStream("images/spring.jpg");
+            response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+            StreamUtils.copy(fileInput , response.getOutputStream());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

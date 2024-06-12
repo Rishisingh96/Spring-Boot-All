@@ -9,8 +9,15 @@ public class Todo {
     private String title;
     private String content;
     private String status;
+//    private Date addedDate;
+//
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+//    private Date toDoDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date addedDate;
-    @JsonFormat(pattern = "dd/MM/yyyy")
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date toDoDate;
 
     public Todo(int id, String title, String content, String status, Date addedDate, Date toDoDate) {
@@ -22,21 +29,7 @@ public class Todo {
         this.toDoDate = toDoDate;
     }
 
-    public Date getAddedDate() {
-        return addedDate;
-    }
-
-    public void setAddedDate(Date addedDate) {
-        this.addedDate = addedDate;
-    }
-
-    public Date getToDoDate() {
-        return toDoDate;
-    }
-
-    public void setToDoDate(Date toDoDate) {
-        this.toDoDate = toDoDate;
-    }
+    public Todo() {}
 
     public int getId() {
         return id;
@@ -68,6 +61,22 @@ public class Todo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(Date addedDate) {
+        this.addedDate = addedDate;
+    }
+
+    public Date getToDoDate() {
+        return toDoDate;
+    }
+
+    public void setToDoDate(Date toDoDate) {
+        this.toDoDate = toDoDate;
     }
 
     @Override
