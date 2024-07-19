@@ -1,0 +1,71 @@
+1.What is Dependency injection.How many type of Dependency injection ?
+Dependency injection (DI) is a design pattern and a technique used in object-oriented programming to achieve inversion of control (IoC) between classes and their dependencies. In simpler terms, DI allows you to inject dependencies (like objects that a class needs to do its job) into the class from the outside, rather than the class creating them itself.
+
+### Types of Dependency Injection:
+
+1. **Constructor Injection**:
+   - Dependencies are provided through the class constructor.
+   - Example (in Java):
+     ```java
+     public class UserService {
+         private final UserRepository userRepository;
+     
+         public UserService(UserRepository userRepository) {
+             this.userRepository = userRepository;
+         }
+         // Other methods using userRepository
+     }
+     ```
+   - Constructor injection ensures that all required dependencies are provided when an object is instantiated.
+
+2. **Setter Injection**:
+   - Dependencies are set through public setter methods on the class.
+   - Example (in Java):
+     ```java
+     public class UserService {
+         private UserRepository userRepository;
+     
+         public void setUserRepository(UserRepository userRepository) {
+             this.userRepository = userRepository;
+         }
+         // Other methods using userRepository
+     }
+     ```
+   - Setter injection allows flexibility because dependencies can be changed after the object is instantiated.
+
+3. **Field Injection**:
+   - Dependencies are directly assigned to public fields of the class.
+   - Example (in Java):
+     ```java
+     public class UserService {
+         @Autowired
+         private UserRepository userRepository;
+     
+         // Other methods using userRepository
+     }
+     ```
+   - Field injection is straightforward but reduces encapsulation and makes testing more difficult.
+
+In addition to these types, there are also variations and frameworks that support dependency injection, such as:
+   
+- **Interface Injection**: Where a class implements an interface with methods to inject dependencies.
+- **Service Locator Pattern**: A central registry holds mappings between interfaces and implementations, which are looked up by clients.
+
+The choice of injection type depends on factors like complexity, maintainability, and the features provided by the programming language or framework being used.
+
+2. What is Dependency in Java and How many type is Dependecy?
+In Java programming, "dependency" refers to a situation where one class depends on another class to function properly. This dependence is typically in the form of one class using another class, often by calling its methods, accessing its fields, or collaborating with it in some way.
+
+### Types of Dependencies in Java:
+
+1. **Compile-time Dependencies**: These dependencies are required by a class during compilation. If a class references another class or interface directly in its source code (e.g., using import statements), it has a compile-time dependency on that class or interface. This type of dependency is essential for the compiler to resolve types and check correctness during compilation.
+
+2. **Runtime Dependencies**: Runtime dependencies occur when a class uses another class or interface during execution of the program. Unlike compile-time dependencies, which are resolved during compilation, runtime dependencies are resolved dynamically while the program is running. This often happens through object instantiation, method calls, or service lookups.
+
+3. **Transitive Dependencies**: When a class depends on another class, which in turn depends on yet another class, the original class indirectly depends on the third class as well. This chain of dependencies is known as transitive dependency. Modern build tools and dependency management systems like Maven or Gradle handle transitive dependencies automatically by resolving and including all necessary dependencies for the project.
+
+4. **Direct Dependencies**: These are dependencies that a class explicitly requires to function correctly. They are declared directly in the class itself, either through import statements or through explicit references in the code.
+
+5. **Indirect Dependencies**: Indirect dependencies are dependencies that are required by other dependencies. For example, if Class A depends on Class B, and Class B depends on Class C, then Class A indirectly depends on Class C.
+
+Understanding and managing dependencies is crucial in Java development to ensure modular, maintainable, and efficient code. Tools like dependency injection frameworks (e.g., Spring) and build automation tools help in managing these dependencies effectively.
