@@ -75,9 +75,9 @@ public class TodoManagerApplication implements CommandLineRunner {
 		//Delete Multiple
 //		todoDao.deleteMultiple(new int[]{1236});
 //		System.out.println("Deleting todos from Database.........");
-		Todo todo = todoDao.getTodo(85372930);
-		logger.info("{}",todo);
-		List<Todo> allTodos = todoDao.getAllTodos();
-		logger.info("{}",allTodos);
+//		Todo todo = todoDao.getTodo(85372930);
+//		logger.info("{}",todo);
+//		List<Todo> allTodos = todoDao.getAllTodos();
+//		logger.info("{}",allTodos);
 	}
 }

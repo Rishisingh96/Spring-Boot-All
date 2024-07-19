@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Component
@@ -28,21 +29,38 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user, int userId) {
-        return null;
+       //1:user get database
+        User oldUser = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User Id not found"));
+        oldUser.setName(user.getName());
+        oldUser.setCity(user.getCity());
+        oldUser.setAge(user.getAge());
+        //rest of the details also be updated
+
+        //2.update user
+        User useru = userRepository.save(oldUser);
+
+        return useru;
     }
 
     @Override
     public void deleteUser(int userId) {
+        User userDelete = userRepository.findById(3).orElseThrow(() -> new RuntimeException("Uer not Exist your database"));
+        userRepository.delete(userDelete);
+        //deleteAll
+        logger.info("user Deleted");
 
     }
 
     @Override
     public List<User> getAllUser() {
-        return null;
+        List<User> usersall = userRepository.findAll();
+        return usersall;
     }
 
     @Override
     public User getUser(int userId) {
-        return null;
+        Optional<User> userOptional = userRepository.findById(userId);
+        User user = userOptional.orElseThrow(() -> new RuntimeException("User with given id not found."));
+        return user;
     }
 }
