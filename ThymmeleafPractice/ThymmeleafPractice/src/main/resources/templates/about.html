@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>About Page</title>
+</head>
+<body>
+
+<h1>About Page</h1>
+
+<!-- Displaying the name -->
+<p th:text="${name != null ? name : 'Default Name'}"></p>
+
+<!-- Displaying the name in uppercase, with a null check -->
+<p th:text="${name != null ? #strings.toUpperCase(name) : 'DEFAULT NAME'}"></p>
+
+<!-- Displaying the current date -->
+<p th:text="'Current Date and Time: ' + ${currentDate}"></p>
+
+</body>
+</html>
